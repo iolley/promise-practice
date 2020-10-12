@@ -1,0 +1,114 @@
+//Task 1.
+//promise の　再resolve?
+//以下の出力コードはなんでしょう？
+
+let promise = new Promise(function(resolve, reject) {
+  resolve(1);
+
+  setTimeout(() => resolve(2), 1000);
+});
+promise.then(alert);
+
+//答え　出力コード１
+//理由　最初の呼び出しのみ　new Promise(function(resolve, reject) {resolve(1);　考慮されるから
+//resolve の2度目の呼び出しは無視されます。なぜなら reject/resolve の初回の呼び出しのみが考慮されるためです。さらなる呼び出しは無視されます。
+
+//Task 2.
+//promise での遅延
+//組み込み関数 setTimeout はコールバックを使用します。
+//promise ベースで代替のものを作成してください。
+//関数 delay(ms) は promise を返す必要があります。
+//その promise は ms ミリ秒後に解決され、そこへ .then を追加することができます。
+//次のようになります:
+
+function delay(ms) {
+  // あなたのコード
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+delay(3000).then(() => alert('runs after 3 seconds'));
+
+//このタスクでは、resolve が引数無しで呼び出されることに注意してください。delay からは何の値も返しません、ただ遅延を保証します。
+
+//Task 3.
+//promise でのアニメーションつきサークル
+//タスク コールバック付きのアニメーション化された円 の解答にある showCircle 関数を、
+//コールバックを受ける代わりに promise を返すように書き直してください。
+
+showCircle(150, 150, 100).then(div => {
+  div.classList.add('message-ball');
+  div.append("Hello, world!");
+});
+
+//タスク アニメーションサークル には、アニメーションで大きくなる円があります。
+//今、ただの円ではなくその中にメッセージを表示する必要があるとしましょう。
+//メッセージはアニメーションが完了した(円が完全に大きくなった) 後 に出現させたほうが良いです。そうでないと醜いためです。
+//このタスクの解答では、関数 showCircle(cx, cy, radius) が円を描きます。が、いつ準備ができたかを追跡する方法は提供していません。
+//アニメーションが完了したときに呼ばれるコールバック引数を追加してください: 
+//showCircle(cx, cy, radius, callback)。 callback は引数として円の <div> を受け取ります。
+
+showCircle(150, 150, 100, div => {
+  div.classList.add('message-ball');
+  div.append("Hello, world!");
+});
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    .message-ball {
+      font-size: 20px;
+      line-height: 200px;
+      text-align: center;
+    }
+    .circle {
+      transition-property: width, height, margin-left, margin-top;
+      transition-duration: 2s;
+      position: fixed;
+      transform: translateX(-50%) translateY(-50%);
+      background-color: red;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <button onclick="go()">Click me</button>
+
+  <script>
+
+  function go() {
+    showCircle(150, 150, 100).then(div => {
+      div.classList.add('message-ball');
+      div.append("Hello, world!");
+    });
+  }
+
+  function showCircle(cx, cy, radius) {
+    let div = document.createElement('div');
+    div.style.width = 0;
+    div.style.height = 0;
+    div.style.left = cx + 'px';
+    div.style.top = cy + 'px';
+    div.className = 'circle';
+    document.body.append(div);
+
+    return new Promise(resolve => {
+      setTimeout(() => {
+        div.style.width = radius * 2 + 'px';
+        div.style.height = radius * 2 + 'px';
+
+        div.addEventListener('transitionend', function handler() {
+          div.removeEventListener('transitionend', handler);
+          resolve(div);
+        });
+      }, 0);
+    })
+  }
+  </script>
+
+
+</body>
+</html>
