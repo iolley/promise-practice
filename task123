@@ -1,7 +1,19 @@
+//追加課題 19/10/2020
+function func(arg1, arg2) {
+  return arg1 + arg2;
+}
+func(1, 3);// 4が返る
+
+//答え アロー関数に変換する
+const arg = function(){
+}
+arg();
+const arg = (() => arg1,arg2 );
+
+
 //Task 1.
 //promise の　再resolve?
 //以下の出力コードはなんでしょう？
-
 let promise = new Promise(function(resolve, reject) {
   resolve(1);
 
