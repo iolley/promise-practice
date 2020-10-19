@@ -1,3 +1,17 @@
+//追加課題 19/10/2020
+function func(arg1, arg2) {
+  return arg1 + arg2;
+}
+func(1, 3);// 4が返る
+
+//答え アロー関数に変換する
+const func1 = function(){
+}
+func1();
+const func2 = (() => arg1,arg2 );
+(1,3) => 4
+
+
 //Task 1.
 //promise の　再resolve?
 //以下の出力コードはなんでしょう？
@@ -51,60 +65,60 @@ let promise = new Promise(function(resolve, reject) {
     div.append("Hello, world!");
   });
   
-  <!DOCTYPE html>
-  <html>
+  //<!DOCTYPE html>
+  //<html>
   
-  <head>
-    <meta charset="utf-8">
-    <style>
-      .message-ball {
-        font-size: 20px;
-        line-height: 200px;
-        text-align: center;
-      }
-      .circle {
-        transition-property: width, height, margin-left, margin-top;
-        transition-duration: 2s;
-        position: fixed;
-        transform: translateX(-50%) translateY(-50%);
-        background-color: red;
-        border-radius: 50%;
-      }
-    </style>
-  </head>
+  // <head>
+  //   <meta charset="utf-8">
+  //   <style>
+  //     .message-ball {
+  //       font-size: 20px;
+  //       line-height: 200px;
+  //       text-align: center;
+  //     }
+  //     .circle {
+  //       transition-property: width, height, margin-left, margin-top;
+  //       transition-duration: 2s;
+  //       position: fixed;
+  //       transform: translateX(-50%) translateY(-50%);
+  //       background-color: red;
+  //       border-radius: 50%;
+  //     }
+  //   </style>
+  // </head>
   
-  <body>
+  // <body>
   
-    <button onclick="go()">Click me</button>
+  //   <button onclick="go()">Click me</button>
   
-    <script>
+  //   <script>
   
-    function go() {
-      showCircle(150, 150, 100).then(div => {
-        div.classList.add('message-ball');
-        div.append("Hello, world!");
-      });
-    }
+  //   function go() {
+  //     showCircle(150, 150, 100).then(div => {
+  //       div.classList.add('message-ball');
+  //       div.append("Hello, world!");
+  //     });
+  //   }
   
-    function showCircle(cx, cy, radius) {
-      let div = document.createElement('div');
-      div.style.width = 0;
-      div.style.height = 0;
-      div.style.left = cx + 'px';
-      div.style.top = cy + 'px';
-      div.className = 'circle';
-      document.body.append(div);
+  //   function showCircle(cx, cy, radius) {
+  //     let div = document.createElement('div');
+  //     div.style.width = 0;
+  //     div.style.height = 0;
+  //     div.style.left = cx + 'px';
+  //     div.style.top = cy + 'px';
+  //     div.className = 'circle';
+  //     document.body.append(div);
   
-      return new Promise(resolve => {
-        setTimeout(() => {
-          div.style.width = radius * 2 + 'px';
-          div.style.height = radius * 2 + 'px';
+  //     return new Promise(resolve => {
+  //       setTimeout(() => {
+  //         div.style.width = radius * 2 + 'px';
+  //         div.style.height = radius * 2 + 'px';
   
-          div.addEventListener('transitionend', function handler() {
-            div.removeEventListener('transitionend', handler);
-            resolve(div);
-          });
-        }, 0);
-      })
-    }
-    </script>
+  //         div.addEventListener('transitionend', function handler() {
+  //           div.removeEventListener('transitionend', handler);
+  //           resolve(div);
+  //         });
+  //       }, 0);
+  //     })
+  //   }
+  //   </script>
