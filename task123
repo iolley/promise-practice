@@ -9,6 +9,7 @@ const arg = function(){
 }
 arg();
 const arg = (() => arg1,arg2 );
+()=>(1,3)
 
 
 //Task 1.
