@@ -1,16 +1,27 @@
-//追加課題 19/10/2020
+//修正追加課題 26/10/2020
 function func(arg1, arg2) {
   return arg1 + arg2;
 }
 func(1, 3);// 4が返る
 
 //答え アロー関数に変換する
-const func1 = function(){
+const func1 = (arg1+arg2) => {
+  const func1 = '${ arg1 } + ${ arg2 }!';
+  return func1;
 }
-func1();
-const func2 = (() => arg1,arg2 );
-(1,3) => 4
+func1('4');
 
+//アロー関数基本構文
+//const 関数名　= (引数１，引数２)　=> { 
+//return 返り値；
+//}
+//関数名（引数１の値、引数２の値；
+//例
+//const sayHi = (name,greeting) => {
+//const phrase = '${greeting}, ${name}!' ;
+//return phrase;
+//}
+//sayHi('Kenji','Hi'); // "Hi,Kenji!"
 
 //Task 1.
 //promise の　再resolve?
